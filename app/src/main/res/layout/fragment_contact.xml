@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewmodel"
+            type="android.demo.weatherapplication.feature.contact.ContactViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="@dimen/activity_margin_20dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/name_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:inputType="text"
+                android:imeOptions="actionNext"
+                android:text="@={viewmodel.contactForm.name}"
+                app:onFocus="@{viewmodel.nameOnFocusChangeListener}"
+                app:onTextChange="@{viewmodel.nameOnTextChangeListener}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/email_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_margin_20dp"
+            android:hint="Email">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:background="@color/white"
+                android:imeOptions="actionNext"
+                android:text="@={viewmodel.contactForm.email}"
+                app:onFocus="@{viewmodel.emailOnFocusChangeListener}"
+                app:onTextChange="@{viewmodel.emailOnTextChangeListener}"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/phone_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_margin_20dp"
+            android:hint="Phone Number">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:inputType="phone"
+                android:imeOptions="actionDone"
+                android:digits="0123456789"
+                android:text="@={viewmodel.contactForm.phoneNumber}"
+                app:onFocus="@{viewmodel.phoneNumberOnFocusChangeListener}"
+                app:onTextChange="@{viewmodel.phoneNumberOnTextChangeListener}"
+                app:onEditorAction="@{viewmodel.editorActionListener}"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/btn"
+            android:layout_marginTop="@dimen/activity_margin_20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:enabled="@{viewmodel.contactForm.contactValid}"
+            android:onClick="@{viewmodel.submitOnClickListener}"/>
+    </LinearLayout>
+
+</layout>
